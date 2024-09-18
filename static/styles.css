@@ -1,0 +1,304 @@
+body {
+    font-family: Inter, sans-serif;
+    background: linear-gradient(#84afdd, #6A9CD1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #ffe4e1;
+    margin: 5px 0 0;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.highlight-title {
+    background-color: #ff6f61; /* Escolha uma cor que destaque */
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.highlight-title h2 {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    margin: 5px 0;
+    display: block;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+.image-preview {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+    flex: 1;
+}
+
+.image-preview h3 {
+    margin-top: 0;
+}
+
+.generated-image-container {
+    position: relative;
+}
+
+#generatedImage {
+    max-width: 86%;
+    max-height: 93.5%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+    z-index: 0; /* Coloca a imagem gerada abaixo */
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4CAF50;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.mockup-container {
+    position: relative;
+    width: 350px; /* Ajuste conforme o tamanho do mockup */
+    height: 700px; /* Ajuste conforme o tamanho do mockup */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mockup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Coloca o mockup acima */
+    
+}
+
+.generated-image {
+    position: absolute;
+    width: 1080px; /* Largura da imagem gerada */
+    height: 1920px; /* Altura da imagem gerada */
+    max-width: 70%; /* Ajuste conforme necessário */
+    max-height: 70%; /* Ajuste conforme necessário */
+    z-index: 0; /* Coloca a imagem gerada abaixo */
+}
+
+.clock {
+    font-family: 'SF Pro Display', Arial, sans-serif;
+    font-weight: 400; /* Ajuste para um peso mais espesso */
+    letter-spacing: -0.03em; /* Ajusta o espaçamento entre as letras para se aproximar mais */
+    position: absolute;
+    top: 13%; /* Posicione o relógio na parte superior */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 65px; /* Ajuste o tamanho do relógio conforme necessário */
+    color: #fefff3; /* Cor do relógio */
+    z-index: 3; /* Fica acima da imagem gerada e do mockup */
+    margin-top:7px;
+}
+
+.date-time {
+    position: absolute;
+    top: 15%; /* Ajuste conforme necessário */
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    font-family: 'SF Pro Display', Arial, sans-serif;
+    font-weight: 400; /* Ajuste para um peso mais espesso */
+    letter-spacing: -0.01em; /* Ajusta o espaçamento entre as letras para se aproximar mais */
+}
+
+.date {
+    font-size: 18px; /* Ajuste o tamanho da fonte da data */
+    margin-bottom: 20px; /* Espaçamento entre a data e a hora */
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 90%;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+#imageToCrop {
+    max-width: 100%;
+    max-height: 50vh;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+#cropButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    z-index: 10;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+}
+
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Para que não interfira na interação do usuário */
+    overflow: hidden;
+    z-index: 1000; /* Para que os corações fiquem na frente de todos os elementos */
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: float 3s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--random-x, 0px), -100px) scale(1);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-container,
+    .image-preview {
+        width: 90%; /* Altere conforme necessário */
+        max-width: 400px;
+        margin-bottom: 20px; /* Espaço entre os blocos */
+    }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Quadro Spotify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <!-- Conteúdo do seu HTML: título, formulário, e visualização da imagem -->
+    
+    <header>
+        <img src="static/logo.png" alt="Logo" class="logo">
+        <h1 class="title">Surpreenda seu Amor</h1>
+        <p class="subtitle">Crie um quadro personalizado para eternizar os melhores momentos do seu relacionamento.</p>
+    </header>
+
+
+    <div class="main-container">
+        
+        <div class="form-container">
+            <div class="highlight-title">
+                <h2>Crie o seu!</h2>
+            </div>
+            <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
+                <!-- Seu formulário continua aqui -->
+            
+            <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
+                <label for="spotify_link">Link do Spotify:</label>
+                <input type="text" id="spotify_link" name="spotify_link" placeholder="Cole o link da música do Spotify" required>
+                
+                <label for="photo">Envie uma foto personalizada:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                
+                <label for="couple_name">Nome do casal (Opcional):</label>
+                <input type="text" id="couple_name" name="couple_name" placeholder="Nome do casal">
+
+                <label for="relationship_date">Data do namoro (Opcional):</label>
+                <input type="date" id="relationship_date" name="relationship_date">
+
+                <button type="submit">Gerar Visualização</button>
+            </form>
+        </div>
+
+        <div class="image-preview">
+            <h3>Visualização do seu Plano de Fundo:</h3>
+            <div class="generated-image-container">
+                <div class="mockup-container">
+                    <img src="static/celular.png" class="mockup" alt="Mockup de Celular">
+                    <img id="generatedImage" src="" class="generated-image" alt="Imagem Gerada">
+                    <div class="date-time">
+                        <div id="currentDate" class="date"></div> <!-- Adiciona a data atual -->
+                        <div id="clock" class="clock"></div> <!-- Adiciona o relógio -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                
+                <img id="generatedImage" src="" alt="Imagem gerada" style="display: none;">
+                <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
+                <div class="hearts-container" id="heartsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para corte da imagem -->
+    <div id="cropModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h3>Ajuste sua imagem</h3>
+            <img id="imageToCrop" src="" alt="Imagem para cortar">
+            <button id="cropButton">Cortar e Usar Imagem</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script>
+        // Seu código JavaScript para manipulação do formulário
+        const form = document.getElementById('generateForm');
+        const photoInput = document.getElementById('photo');
+        const cropModal = document.getElementById('cropModal');
+        const imageToCrop = document.getElementById('imageToCrop');
+        const cropButton = document.getElementById('cropButton');
+        const spinner = document.getElementById('loadingSpinner');
+        const generatedImage = document.getElementById('generatedImage');
+        let cropper;
+
+        // Mostra o modal de corte quando uma imagem é selecionada
+        photoInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imageToCrop.src = e.target.result;
+                    cropModal.style.display = 'flex';
+
+                    // Inicia o Cropper.js com a proporção de 1080x1920
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    cropper = new Cropper(imageToCrop, {
+                        aspectRatio: 1080 / 1920,
+                        viewMode: 1,
+                        autoCropArea: 1,
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Fecha o modal de corte
+        document.getElementById('closeModal').onclick = () => {
+            cropModal.style.display = 'none';
+            if (cropper) cropper.destroy();
+        };
+
+        // Recorta e envia a imagem para o servidor
+        cropButton.addEventListener('click', () => {
+            const canvas = cropper.getCroppedCanvas();
+            canvas.toBlob((blob) => {
+                const file = new File([blob], 'cropped.png', { type: 'image/png' });
+
+                // Substitui a imagem original pela imagem recortada no formulário
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                photoInput.files = dataTransfer.files;
+
+                cropModal.style.display = 'none';
+            });
+        });
+
+        // Coloque o código fornecido aqui
+        form.onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            // Captura os campos opcionais
+            const coupleName = document.getElementById('couple_name').value;
+            const relationshipDate = document.getElementById('relationship_date').value;
+
+            // Adiciona os valores opcionais ao FormData
+            formData.append('couple_name', coupleName);
+            formData.append('relationship_date', relationshipDate);
+
+            spinner.style.display = 'block';
+            generatedImage.style.display = 'none';
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    generatedImage.src = url;
+                    generatedImage.style.display = 'block';
+                    generateHearts(); // Chama a função para gerar corações
+                } else {
+                    alert('Erro ao gerar a imagem. Por favor, tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro ao enviar o formulário:', error);
+                alert('Ocorreu um erro ao processar a solicitação.');
+            } finally {
+                spinner.style.display = 'none';
+            }
+        };
+
+        // Função para gerar os corações
+        function generateHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.setProperty('--random-x', Math.random() * 2 - 1);
+                heartsContainer.appendChild(heart);
+
+                // Remove o coração após a animação terminar
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }
+        }
+    </script>
+
+<script>
+    function updateClock() {
+        const clockElement = document.getElementById('clock');
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        clockElement.textContent = `${hours}:${minutes}`;
+    }
+
+    // Atualiza o relógio a cada minuto
+    setInterval(updateClock, 1000);
+    updateClock(); // Atualiza o relógio imediatamente ao carregar
+</script>
+<script src="static/datetime.js"></script>
+</body>
+</html>
