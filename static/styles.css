@@ -145,8 +145,8 @@ button:hover {
 
 .mockup-container {
     position: relative;
-    width: 350px; /* Ajuste conforme o tamanho do mockup */
-    height: 700px; /* Ajuste conforme o tamanho do mockup */
+    width: 285px; /* Ajuste conforme o tamanho do mockup */
+    height: 518px; /* Ajuste conforme o tamanho do mockup */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -185,7 +185,7 @@ button:hover {
 
 .date-time {
     position: absolute;
-    top: 15%; /* Ajuste conforme necessário */
+    top: 22%; /* Ajuste conforme necessário */
     width: 100%;
     text-align: center;
     color: white;
@@ -196,7 +196,7 @@ button:hover {
 }
 
 .date {
-    font-size: 18px; /* Ajuste o tamanho da fonte da data */
+    font-size: 16px; /* Ajuste o tamanho da fonte da data */
     margin-bottom: 20px; /* Espaçamento entre a data e a hora */
 }
 
