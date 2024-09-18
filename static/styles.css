@@ -120,8 +120,8 @@ button:hover {
 }
 
 #generatedImage {
-    width: 270px;
-    height: 539px;
+    width: 80%;
+    height: 80%;
     border: 1px solid #ddd;
     border-radius: 10px;
     margin-top: 10px;
@@ -145,8 +145,8 @@ button:hover {
 
 .mockup-container {
     position: relative;
-    width: 285px; /* Ajuste conforme o tamanho do mockup */
-    height: 518px; /* Ajuste conforme o tamanho do mockup */
+    width: 93%; /* Ajuste conforme o tamanho do mockup */
+    height: 85.2%; /* Ajuste conforme o tamanho do mockup */
     display: flex;
     justify-content: center;
     align-items: center;
