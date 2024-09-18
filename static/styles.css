@@ -105,10 +105,10 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 400px; /* Ajuste conforme o tamanho desejado */
     text-align: center;
+    width: 100%; /* Toma toda a largura disponível */
     flex: 1;
-    width: 460px;
 }
 
 .image-preview h3 {
@@ -145,28 +145,30 @@ button:hover {
 
 .mockup-container {
     position: relative;
-    width: 93%; /* Ajuste conforme o tamanho do mockup */
-    height: 85.2%; /* Ajuste conforme o tamanho do mockup */
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%; /* O mockup se ajusta ao tamanho do container */
+    padding-top: 100%; /* Mantém a proporção 1:1 para o container */
 }
 
 .mockup {
     position: absolute;
-    width: 315px;
-    height: 574px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
     z-index: 2; /* Coloca o mockup acima */
-    
 }
 
 .generated-image {
     position: absolute;
-    width: 1080px; /* Largura da imagem gerada */
-    height: 1920px; /* Altura da imagem gerada */
-    max-width: 70%; /* Ajuste conforme necessário */
-    max-height: 70%; /* Ajuste conforme necessário */
-    z-index: 0; /* Coloca a imagem gerada abaixo */
+    top: 12%; /* Ajuste de acordo com o design do mockup */
+    left: 8%;
+    width: 84%; /* Deixe um pouco de margem para caber dentro do mockup */
+    height: auto;
+    max-height: 75%;
+    z-index: 1; /* Coloca a imagem abaixo do mockup */
 }
 
 .clock {
