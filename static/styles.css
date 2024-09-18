@@ -154,9 +154,10 @@ button:hover {
 
 .mockup {
     position: absolute;
-    width: 100%; /* Faz com que o mockup ocupe toda a largura do contêiner */
-    height: auto; /* Mantém a proporção correta */
+    width: 92%;
+    height: 85%;
     z-index: 2;
+    top: 12%;
 }
 
 .generated-image {
