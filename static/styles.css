@@ -18,18 +18,18 @@ header {
 }
 
 .subtitle {
-    font-size: 16px;
-    color: #ffe4e1;
+    font-size: 20px;
+    color: #ffffff;
     margin: 5px 0 0;
 }
 
 .title {
-    font-size: 28px;
+    font-size: 42px;
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
-    color: #ffffff;
+    color: #FFCBFE;
     margin: 0;
 }
 
