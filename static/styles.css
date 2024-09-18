@@ -105,9 +105,10 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 500px;
     text-align: center;
     flex: 1;
+    width: 460px;
 }
 
 .image-preview h3 {
@@ -119,8 +120,8 @@ button:hover {
 }
 
 #generatedImage {
-    max-width: 100%;
-    max-height: 100%;
+    width: 270px;
+    height: 539px;
     border: 1px solid #ddd;
     border-radius: 10px;
     margin-top: 10px;
@@ -153,8 +154,8 @@ button:hover {
 
 .mockup {
     position: absolute;
-    width: 117%;
-    height: 107%;
+    width: 315px;
+    height: 574px;
     z-index: 2; /* Coloca o mockup acima */
     
 }
