@@ -1,6 +1,8 @@
+
+
 body {
-    font-family: Inter, sans-serif;
-    background: linear-gradient(#84afdd, #6A9CD1);
+    font-family: Poppins, sans-serif;
+    background:#d8315b;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,31 +15,154 @@ header {
 }
 
 .logo {
-    max-width: 150px;
+    max-width: 120px;
     margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 20px;
+    font-size: 18px;
     color: #ffffff;
     margin: 5px 0 0;
 }
 
 .title {
-    font-size: 42px;
+    font-size: 32px;
+    line-height: 35px;
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
-    color: #FFCBFE;
+    color: #ffffff;
     margin: 0;
 }
+
+
+/* Definir o contêiner principal */
+.floating-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    height: auto;
+    overflow: visible; /* Permite que o celular se mova fora do contêiner sem ser cortado */
+}
+
+/* Estilizando a imagem central (mockup do celular) */
+.floating-image {
+    width: 100%; /* Ajuste conforme o design */
+    height: auto;
+    z-index: 1; /* Mantém a imagem acima dos emojis */
+    animation: floatImage 3s ease-in-out infinite;
+}
+
+/* Estilizando os emojis como imagens */
+.emoji {
+    width: 70px; /* Tamanho dos emojis (ajustável) */
+    position: absolute;
+    z-index: 1;
+    animation: floatEmoji 4s ease-in-out infinite; /* Animação flutuante */
+}
+
+/* Emoji à esquerda */
+.emoji-left {
+    left: 0%; /* Distância da lateral esquerda */
+    bottom: 3%; /* Distância da parte inferior */
+    filter: blur(2px);
+    width: 55px;
+}
+
+/* Emoji à direita */
+.emoji-right {
+    right: 10%; /* Distância da lateral direita */
+    top: 10%; /* Distância da parte superior */
+}
+
+/* Animação para os emojis */
+@keyframes floatEmoji {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Faz o emoji subir e descer */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Animação para a imagem flutuante (mockup) */
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* Reduzi a distância para evitar que o celular seja cortado */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Container do letreiro */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    padding: 7px 0;
+    margin-top: 20px;
+}
+
+.marquee {
+    display: flex;
+    justify-content: center;
+    animation: scroll 10s linear infinite;
+}
+
+.marquee span {
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #d8315b;
+    font-weight: bold;
+}
+
+/* Animação do letreiro */
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Container do título */
+.title-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 80%;
+}
+
+/* Estilização do título */
+.cta-title {
+    background-color: #000;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
 
 .main-container {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    padding: 40px;
+    padding: 20px;
 }
 
 .form-container {
@@ -46,13 +171,12 @@ header {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
-    text-align: center;
+    text-align: left;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .highlight-title {
@@ -77,14 +201,16 @@ label {
 }
 
 input, button {
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 15px;
+    border: 1px solid #595959;
     border-radius: 5px;
     font-size: 14px;
     width: 100%;
     margin: 5px 0;
     display: block;
     box-sizing: border-box;
+    background: #f5f5f5;
+    font-family: Poppins, sans-serif;
 }
 
 button {
@@ -93,11 +219,59 @@ button {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: Poppins;
+    font-size: 16px;
+    margin-top: 20px;
 }
 
 button:hover {
     background-color: #45a049;
 }
+
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #595959;
+    border-radius: 5px;
+    padding: 5px;
+    width: 96%; /* Ajuste conforme necessário */
+    background-color: #f5f5f5;
+    margin: 10px 0; /* Espaçamento vertical */
+}
+
+.custom-file-upload {
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    margin-right: 10px; /* Espaço entre o botão e o nome do arquivo */
+    margin-top: 5px;
+    flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+.custom-file-upload:hover {
+    background-color: #45a049;
+}
+
+input[type="file"] {
+    display: none; /* Esconde o input original */
+}
+
+#file-upload-name {
+    color: #555;
+    font-size: 14px;
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o texto que ultrapassa os limites */
+    text-overflow: ellipsis; /* Adiciona "..." quando o texto for muito longo */
+    max-width: 150px; /* Defina o máximo de largura */
+    flex-grow: 1; /* Permite que o nome do arquivo ocupe o espaço restante */
+}
+
 
 
 .image-preview {
@@ -113,6 +287,9 @@ button:hover {
 
 .image-preview h3 {
     margin-top: 0;
+    padding: 5px 20px 20px 20px;
+    line-height: 20px;
+    font-size: 24px;
 }
 
 .generated-image-container {
@@ -267,39 +444,188 @@ button:hover {
     color: #333;
 }
 
-.hearts-container {
+/* Ajustes para centralizar o carrossel e corrigir ícones */
+.feedback-section {
+    position: relative; /* Necessário para posicionamento absoluto dos corações */
+    overflow: hidden; /* Esconde partes do conteúdo que ultrapassam o contêiner */
+    background-color: #d8315b;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.feedback-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o conteúdo */
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.heart-icon {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Para que não interfira na interação do usuário */
+    z-index: 1;
+    animation: floatEmoji 4s ease-in-out infinite;
+}
+
+.heart-icon.left {
+    left: -58px;
+    top: 55px;
+}
+
+.heart-icon.right {
+    right: -83px;
+    top: -22px;
+}
+
+.feedback-title {
+    z-index: 2;
+}
+
+.feedback-title h2 {
+    font-size: 28px;
+    color: #fff;
+    margin: 0;
+    font-weight: bold;
+}
+
+.feedback-title p {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+.stars {
+    font-size: 20px;
+    color: #fddb3a;
+    margin: 5px 0;
+}
+
+.rating {
+    font-size: 14px;
+    color: #fff;
+}
+
+.carousel-container {
+    position: relative;
     overflow: hidden;
-    z-index: 1000; /* Para que os corações fiquem na frente de todos os elementos */
+    border-radius: 10px;
+    background-color: #fff;
+    height: 250px;
+    margin-top: 10px;
 }
 
-.heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: red;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    animation: float 3s ease-in-out forwards;
-    opacity: 0;
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Centraliza o carrossel */
 }
 
-@keyframes float {
-    0% {
-        transform: translate(0, 0) scale(0.5);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--random-x, 0px), -100px) scale(1);
-        opacity: 0;
-    }
+.carousel-item {
+    min-width: 100%; /* Cada item ocupa 100% da largura */
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center; /* Centraliza a imagem dentro do item */
+    align-items: center;
 }
+
+.carousel-item img {
+    width: auto;
+    height: 100%; /* Mantém a altura da imagem para caber no carrossel */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-dots {
+    margin-top: 195px;
+    text-align: center;
+}
+
+.carousel-dots .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 3px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+    background-color: #fddb3a;
+}
+
+.faq-section {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box; /* Garante que padding seja incluído na largura */
+}
+
+.faq-container {
+    max-width: 100%; /* Garante que o contêiner não ultrapasse a largura */
+    margin: 0 auto;
+    padding: 0 20px; /* Padding interno para não encostar nas bordas */
+    box-sizing: border-box;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    background-color: #B3264A;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    box-sizing: border-box; /* Inclui o padding na largura total */
+}
+
+.faq-answer {
+    display: none;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.arrow {
+    transition: transform 0.3s;
+}
+
+.faq-question.active .arrow {
+    transform: rotate(180deg);
+}
+
+.faq-question.active + .faq-answer {
+    display: block;
+}
+
+
+
 
 @media (max-width: 768px) {
+
+    .faq-container {
+        max-width: 500px; /* Ajusta para uma largura fixa em telas maiores */
+    }
     .main-container {
         flex-direction: column;
         align-items: center;
@@ -310,6 +636,8 @@ button:hover {
         width: 90%; /* Altere conforme necessário */
         max-width: 400px;
         margin-bottom: 20px; /* Espaço entre os blocos */
+        border-radius: 20px;
+        box-shadow: 0px 0px 16px 9px #c24162;
     }
 
     .loading-spinner {

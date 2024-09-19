@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flask Server",
+            "type": "python",
+            "request": "launch",
+            "program": "C:/Users/giiro/Downloads/amor-profundo/index.py",  // Caminho absoluto do arquivo
+            "console": "integratedTerminal",
+            "args": [],
+            "env": {
+                "FLASK_APP": "index.py",  
+                "FLASK_ENV": "development"
+            },
+            "jinja": true
+        },
+        {
+            "name": "Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:5000",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

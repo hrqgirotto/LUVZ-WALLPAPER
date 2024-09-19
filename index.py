@@ -43,3 +43,6 @@ def generate():
     except Exception as e:
         print(f"Erro ao processar solicitação: {str(e)}")
         return f"Ocorreu um erro ao processar sua solicitação: {str(e)}", 500
+    
+#if __name__ == '__main__':#
+    #app.run(debug=True)#

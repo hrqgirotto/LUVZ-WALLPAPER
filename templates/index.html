@@ -11,27 +11,46 @@
     <!-- Conteúdo do seu HTML: título, formulário, e visualização da imagem -->
     
     <header>
-        <img src="static/logo.png" alt="Logo" class="logo">
+        <img src="static/logo.webp" alt="Logo" class="logo">
         <h1 class="title">Leve seu amor com você, na palma da sua mão!</h1>
         <p class="subtitle">Transforme um momento especial em um wallpaper único e cheio de amor.</p>
     </header>
 
+    <div class="floating-container">
+        <img src="static/emoji/emoji-rosto-coracao-blur.webp" alt="Emoji Coração" class="emoji emoji-left">
+        <img src="static/como-funciona.webp" alt="Mockup de Celular" class="floating-image">
+        <img src="static/emoji/emoji-rosto-coracao.webp" alt="Emoji Coração" class="emoji emoji-right">
+    </div>
+    
+    <div class="marquee-container">
+        <div class="marquee">
+            <span>CARREGUE AMOR! &nbsp; CARREGUE AMOR! &nbsp; CARREGUE AMOR! &nbsp; CARREGUE AMOR! &nbsp; CARREGUE AMOR! &nbsp; CARREGUE AMOR! &nbsp;</span>
+        </div>
+    </div>
+    
+    <div class="title-container">
+        <h2 class="cta-title">CHEGOU A HORA DE CRIAR O SEU!</h2>
+    </div>
 
+    
     <div class="main-container">
         
         <div class="form-container">
-            <div class="highlight-title">
-                <h2>Crie o seu!</h2>
-            </div>
             <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
                 <!-- Seu formulário continua aqui -->
             
             <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
-                <label for="spotify_link">Link do Spotify:</label>
+                <label for="spotify_link">Link da música do Spotify:</label>
                 <input type="text" id="spotify_link" name="spotify_link" placeholder="Cole o link da música do Spotify" required>
                 
-                <label for="photo">Envie uma foto personalizada:</label>
-                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <div class="file-upload-container">
+                    <label for="photo" class="custom-file-upload">
+                        Enviar foto
+                    </label>
+                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                    <span id="file-upload-name">Nenhum arquivo selecionado</span>
+                </div>
+                
                 
                 <label for="couple_name">Nome do casal (Opcional):</label>
                 <input type="text" id="couple_name" name="couple_name" placeholder="Nome do casal">
@@ -39,11 +58,11 @@
                 <label for="relationship_date">Data do namoro (Opcional):</label>
                 <input type="date" id="relationship_date" name="relationship_date">
 
-                <button type="submit">Gerar Visualização</button>
+                <button type="submit" onclick="scrollToImage()">Gerar Visualização</button>
             </form>
         </div>
 
-        <div class="image-preview">
+        <div class="image-preview" id="imagePreview">
             <h3>Veja como vai ficar em seu celular:</h3>
             <div class="generated-image-container">
                 <div class="mockup-container">
@@ -60,7 +79,6 @@
                 
                 <img id="generatedImage" src="" alt="Imagem gerada" style="display: none;">
                 <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
-                <div class="hearts-container" id="heartsContainer"></div>
             </div>
         </div>
     </div>
@@ -75,6 +93,88 @@
         </div>
     </div>
 
+    <div class="feedback-section">
+        <div class="feedback-header">
+            <div class="heart-icon left">
+                <img src="static/heart-icon-left.webp" alt="Ícone de Coração Esquerdo">
+            </div>
+            <div class="feedback-title">
+                <h2>Feedbacks</h2>
+                <p>Confira os relatos de casais satisfeitos</p>
+                <div class="stars">
+                    ★ ★ ★ ★ ★
+                </div>
+                <p class="rating">5.0/5.0</p>
+            </div>
+            <div class="heart-icon right">
+                <img src="static/heart-icon-right.webp" alt="Ícone de Coração Direito">
+            </div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel">
+                <!-- Substitua as divs abaixo por imagens dos feedbacks -->
+                <div class="carousel-item"><img src="static/feedback1.png" alt="Feedback 1"></div>
+                <div class="carousel-item"><img src="static/feedback2.png" alt="Feedback 2"></div>
+                <div class="carousel-item"><img src="static/feedback3.png" alt="Feedback 3"></div>
+                <div class="carousel-item"><img src="static/feedback4.png" alt="Feedback 4"></div>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-section">
+        <h2>PERGUNTAS FREQUENTES</h2>
+        <p>Odiamos dúvidas... resolva a sua abaixo!</p>
+    
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <span>Lorem Ipsum</span>
+                    <span class="arrow">⬇</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Aqui está a resposta para a primeira pergunta do FAQ.</p>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <span>Lorem Ipsum</span>
+                    <span class="arrow">⬇</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Aqui está a resposta para a segunda pergunta do FAQ.</p>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <span>Lorem Ipsum</span>
+                    <span class="arrow">⬇</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Aqui está a resposta para a terceira pergunta do FAQ.</p>
+                </div>
+            </div>
+    
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">
+                    <span>Lorem Ipsum</span>
+                    <span class="arrow">⬇</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Aqui está a resposta para a quarta pergunta do FAQ.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script>
         // Seu código JavaScript para manipulação do formulário
@@ -158,7 +258,6 @@
                     const url = URL.createObjectURL(blob);
                     generatedImage.src = url;
                     generatedImage.style.display = 'block';
-                    generateHearts(); // Chama a função para gerar corações
                 } else {
                     alert('Erro ao gerar a imagem. Por favor, tente novamente.');
                 }
@@ -169,24 +268,6 @@
                 spinner.style.display = 'none';
             }
         };
-
-        // Função para gerar os corações
-        function generateHearts() {
-            const heartsContainer = document.getElementById('heartsContainer');
-
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.setProperty('--random-x', Math.random() * 2 - 1);
-                heartsContainer.appendChild(heart);
-
-                // Remove o coração após a animação terminar
-                heart.addEventListener('animationend', () => {
-                    heart.remove();
-                });
-            }
-        }
     </script>
 
 <script>
@@ -203,5 +284,7 @@
     updateClock(); // Atualiza o relógio imediatamente ao carregar
 </script>
 <script src="static/datetime.js"></script>
+<script src="static/faq.js"></script>
+<script src="static/scripts.js"></script>
 </body>
 </html>
