@@ -98,7 +98,7 @@ class Quadro:
         self.fontTitle = 'FUTURA_HEAVY_FONT.TTF'
         self.fontMusic = 'FUTURA_LIGHT_BT.TTF'
         self.fontDuration = 'FUTURA_MEDIUM_BT.TTF'
-        self.templateName = 'moldura.png'
+        self.templateName = 'moldura.webp'
 
     def getImagemCapa(self):
         response = requests.get(self.musica.linkImgCapa)
