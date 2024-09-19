@@ -61,7 +61,7 @@ header {
 
 /* Estilizando os emojis como imagens */
 .emoji {
-    width: 70px; /* Tamanho dos emojis (ajustável) */
+    width: 100px; /* Tamanho dos emojis (ajustável) */
     position: absolute;
     z-index: 1;
     animation: floatEmoji 4s ease-in-out infinite; /* Animação flutuante */
@@ -77,7 +77,7 @@ header {
 
 /* Emoji à direita */
 .emoji-right {
-    right: 10%; /* Distância da lateral direita */
+    right: 3%; /* Distância da lateral direita */
     top: 10%; /* Distância da parte superior */
 }
 
