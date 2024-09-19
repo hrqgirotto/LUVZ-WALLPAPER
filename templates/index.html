@@ -12,7 +12,7 @@
     
     <header>
         <img src="static/logo.webp" alt="Logo" class="logo">
-        <h1 class="title">Leve seu amor por onde for, na palma da sua mão!</h1>
+        <h1 class="title">Leve amor por onde for, na palma da sua mão!</h1>
         <p class="subtitle">Transforme um momento especial em um wallpaper único e cheio de amor.</p>
     </header>
 
@@ -43,9 +43,27 @@
             <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
                 <!-- Seu formulário continua aqui -->
             
-            <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
-                <label for="spotify_link">Link da música do Spotify:</label>
-                <input type="text" id="spotify_link" name="spotify_link" placeholder="Cole o link da música do Spotify" required>
+                <form id="generateForm" action="/generate" method="post" enctype="multipart/form-data">
+                    <div class="spotify-title-container">
+                        <label for="spotify_link" class="spotify-label">Link da música do Spotify:</label>
+                        <button class="info-button" onclick="showTutorial()">Como pego?</button>
+                    </div>
+                    <input type="text" id="spotify_link" name="spotify_link" placeholder="Cole o link da música do Spotify" required>
+                    
+
+<!-- Pop-up de instruções -->
+<div id="tutorialPopup" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close-popup">&times;</span>
+        <h2>Como pegar o link do Spotify</h2>
+        <ol>
+            <li>Acesse o Spotify e escolha a música que deseja.</li>
+            <li>Clique no ícone de "Compartilhar".</li>
+            <li>Selecione a opção "Copiar Link".</li>
+            <li>Pronto! Agora cole o link no campo.</li>
+        </ol>
+    </div>
+</div>
                 
                 <div class="file-upload-container">
                     <label for="photo" class="custom-file-upload">
@@ -97,6 +115,10 @@
         </div>
     </div>
 
+    <button id="buyButton" style="display: none; position: fixed; bottom: 10px; width: 100%; background-color: #4CAF50; color: #fff; border: none; padding: 15px; font-size: 16px; text-align: center; cursor: pointer;">
+        QUERO BAIXAR AGORA! — R$19,90
+    </button>
+    
     <div class="feedback-section">
         <div class="feedback-header">
             <div class="heart-icon left">
@@ -118,10 +140,10 @@
         <div class="carousel-container">
             <div class="carousel">
                 <!-- Substitua as divs abaixo por imagens dos feedbacks -->
-                <div class="carousel-item"><img src="static/feedback1.png" alt="Feedback 1"></div>
-                <div class="carousel-item"><img src="static/feedback2.png" alt="Feedback 2"></div>
-                <div class="carousel-item"><img src="static/feedback3.png" alt="Feedback 3"></div>
-                <div class="carousel-item"><img src="static/feedback4.png" alt="Feedback 4"></div>
+                <div class="carousel-item"><img src="static/feedback1.jpeg" alt="Feedback 1"></div>
+                <div class="carousel-item"><img src="static/feedback2.jpeg" alt="Feedback 2"></div>
+                <div class="carousel-item"><img src="static/feedback3.jpeg" alt="Feedback 3"></div>
+                <div class="carousel-item"><img src="static/feedback4.jpeg" alt="Feedback 4"></div>
             </div>
             <div class="carousel-dots">
                 <span class="dot"></span>
@@ -290,6 +312,24 @@
     // Atualiza o relógio a cada minuto
     setInterval(updateClock, 1000);
     updateClock(); // Atualiza o relógio imediatamente ao carregar
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona o botão de compra
+    const buyButton = document.getElementById('buyButton');
+
+    // Função para mostrar o botão de compra após a imagem ser gerada
+    function showBuyButton() {
+        buyButton.style.display = 'block';
+    }
+
+    // Verifica se a imagem gerada foi carregada
+    const generatedImage = document.getElementById('generatedImage');
+    generatedImage.addEventListener('load', function() {
+        // Quando a imagem gerada é carregada, mostra o botão de compra
+        showBuyButton();
+    });
+});
+
 </script>
 <script src="static/datetime.js"></script>
 <script src="static/faq.js"></script>
